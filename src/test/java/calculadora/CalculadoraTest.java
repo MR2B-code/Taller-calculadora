@@ -160,4 +160,38 @@ class CalculadoraTest {
                 () -> calc.promedio(null));
         assertEquals("Se requiere al menos un número", exNulo.getMessage());
     }
+
+    // ----- Momento 5: Reto TDD Metodo Porcentaje-----
+
+    @Test
+    @DisplayName("Porcentaje - el 10% de 200 es 20")
+    void porcentajeCasoNormal() {
+        // Arrange
+        double valor = 200, porcentaje = 10;
+        // Act
+        double resultado = calc.porcentaje(valor, porcentaje);
+        // Assert
+        assertEquals(20, resultado, DELTA);
+    }
+
+    @Test
+    @DisplayName("Porcentaje - el 0% de cualquier valor es 0")
+    void porcentajeCero() {
+        assertEquals(0, calc.porcentaje(80, 0), DELTA);
+    }
+
+    @Test
+    @DisplayName("Porcentaje - se permiten porcentajes mayores a 100")
+    void porcentajeMayorA100() {
+        assertEquals(120, calc.porcentaje(80, 150), DELTA);
+    }
+
+    @Test
+    @DisplayName("Porcentaje - porcentaje negativo lanza IllegalArgumentException")
+    void porcentajeNegativoLanzaExcepcion() {
+        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class,
+                () -> calc.porcentaje(100, -10));
+        assertEquals("El porcentaje no puede ser negativo", ex.getMessage());
+    }
 }
+

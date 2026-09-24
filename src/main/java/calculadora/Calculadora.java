@@ -68,4 +68,14 @@ public class Calculadora {
         }
         return suma / numeros.length;
     }
+
+    // ----- Momento 5: Reto TDD -----
+
+    public double porcentaje(double valor, double porcentaje) {
+        if (porcentaje < 0) {
+            throw new IllegalArgumentException("El porcentaje no puede ser negativo");
+        }
+        return valor * (porcentaje / 100);
+    }
+
 }
